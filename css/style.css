@@ -1,0 +1,530 @@
+/* Círculo Activo - Hoja de Estilos Principal */
+/* css/style.css */
+
+/* --- Variables Globales --- */
+:root {
+    --color-primary: #FF6B00; /* Naranja vibrante */
+    --color-secondary: #1E90FF; /* Azul */
+    --color-text: #333333;
+    --color-background: #F8F8F8;
+    --color-card-bg: #FFFFFF;
+    --color-border: #EAEAEA;
+    --color-success: #28a745;
+    --color-danger: #dc3545;
+    --color-warning: #ffc107;
+    --font-family-base: 'Inter', sans-serif;
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Reseteo y Estilos Base --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    padding-top: 60px; /* Espacio para el top-nav fijo */
+    padding-bottom: 70px; /* Espacio para el bottom-nav fijo */
+    min-height: 100vh;
+    -webkit-tap-highlight-color: transparent; /* Evita el destello azul en móviles */
+}
+
+/* Evita destellos en enlaces y botones en móviles */
+a, button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+}
+
+/* --- Barra de Navegación Superior (Header) --- */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--color-card-bg);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 1rem;
+    z-index: 1000;
+}
+
+.top-nav .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+}
+
+.top-nav .user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espacio base */
+}
+
+.user-avatar-sm {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-border);
+}
+
+.notification-bell {
+    position: relative;
+    font-size: 1.5rem;
+    color: var(--color-text);
+}
+
+.notification-count {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background-color: var(--color-danger);
+    color: white;
+    font-size: 0.75rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+/* --- Barra de Navegación Inferior (Footer) --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: var(--color-card-bg);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.bottom-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #888;
+    font-size: 0.75rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    flex-grow: 1; /* Distribución equitativa */
+}
+
+.bottom-nav .nav-item i {
+    font-size: 1.5rem;
+}
+
+.bottom-nav .nav-item.active {
+    color: var(--color-primary);
+}
+
+/* --- Componentes --- */
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary { background-color: var(--color-primary); color: white; }
+.btn-primary:hover { background-color: #E65C00; }
+.btn-secondary { background-color: #EAEAEA; color: var(--color-text); }
+.btn-secondary:hover { background-color: #DCDCDC; }
+.btn-success { background-color: var(--color-success); color: white; }
+.btn-danger { background-color: var(--color-danger); color: white; }
+.btn-warning { background-color: var(--color-warning); color: var(--color-text); }
+.btn-small { padding: 0.5rem 1rem; font-size: 0.9rem; }
+.admin-btn { background-color: var(--color-secondary); color: white; }
+.admin-btn:hover { background-color: #1976D2; }
+
+.form-group { margin-bottom: 1.25rem; }
+.form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
+.form-control { width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--color-border); font-size: 1rem; font-family: var(--font-family-base); }
+.form-control:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2); }
+
+/* --- Tablas Responsivas --- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+}
+th { font-weight: 600; background-color: var(--color-background); }
+
+/* --- Lista de Tareas (index.php) --- */
+.task-list { display: grid; gap: 1rem; }
+.task-card { display: flex; gap: 1rem; align-items: center; background-color: var(--color-card-bg); border-radius: 12px; box-shadow: var(--box-shadow); padding: 1rem; }
+.task-card-image { flex-shrink: 0; width: 80px; height: 80px; border-radius: 8px; overflow: hidden; background-color: var(--color-background); }
+.task-card-image img { width: 100%; height: 100%; object-fit: cover; }
+.task-card-content { flex-grow: 1; }
+.task-card-content h2 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+.task-card-content p { font-size: 0.9rem; color: #666; margin: 0.25rem 0; word-break: break-word; white-space: normal; }
+.task-card-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; flex-shrink: 0; }
+.task-points { font-weight: 600; color: var(--color-primary); white-space: nowrap; }
+
+/* --- Vista de Tarea y Subida de Pruebas --- */
+.task-detail-card h1 { margin-bottom: 0.5rem; }
+.task-detail-meta { color: #666; margin-bottom: 1.5rem; }
+.task-detail-section { margin-top: 1.5rem; }
+.task-detail-section h3 { margin-bottom: 0.5rem; border-bottom: 2px solid var(--color-border); padding-bottom: 0.5rem; }
+.proof-submission-area { background-color: #f9f9f9; border: 1px solid var(--color-border); border-radius: 12px; padding: 1rem; }
+#proof_data_text { width: 100%; min-height: 100px; border: none; background: transparent; resize: vertical; padding: 0.5rem; margin-bottom: 1rem; }
+#proof_data_text:focus { outline: none; }
+.image-uploader { border: 2px dashed var(--color-border); border-radius: 12px; padding: 1.5rem; text-align: center; cursor: pointer; transition: border-color 0.2s; }
+.image-uploader:hover { border-color: var(--color-primary); }
+.image-preview { max-width: 100%; max-height: 300px; border-radius: 8px; border: 1px solid var(--color-border); }
+.progress-bar { width: 0; height: 5px; background-color: var(--color-primary); border-radius: 5px; transition: width 0.3s ease; }
+
+/* --- Mis Tareas (my_tasks.php) y Centro de Disputas --- */
+.tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); }
+.tab-link { padding: 0.75rem 0; border-bottom: 3px solid transparent; font-weight: 600; color: #888; text-decoration: none; }
+.tab-link.active { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+.status-badge { padding: 0.25rem 0.5rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600; color: white; display: inline-block; }
+.status-approved { background-color: var(--color-success); }
+.status-rejected { background-color: var(--color-danger); }
+.status-pending-review { background-color: var(--color-warning); color: #333; }
+.status-in-dispute { background-color: var(--color-secondary); }
+.proof-display-container { background-color: #f1f1f1; padding: 1rem; border-radius: 8px; margin-top: 0.5rem; max-width: 400px; }
+.proof-image { max-width: 200px; border-radius: 8px; margin-top: 0.5rem; border: 1px solid #ddd; cursor: pointer; }
+
+/* --- Perfil de Usuario (profile.php) --- */
+.profile-header { text-align: center; margin-bottom: 2rem; }
+.avatar-upload-container { position: relative; width: 120px; height: 120px; margin: 0 auto 1rem auto; }
+.profile-avatar { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid var(--color-card-bg); box-shadow: var(--box-shadow); }
+#avatar-upload-label { position: absolute; bottom: 5px; right: 5px; width: 32px; height: 32px; background-color: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--box-shadow); }
+.profile-info h1 { font-size: 1.8rem; }
+.profile-info .reputation-badge { display: block; font-size: 1.2rem; margin-top: 0.5rem; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.stat-card { background-color: var(--color-card-bg); padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: var(--box-shadow); }
+.stat-card .stat-value { font-size: 2.5rem; font-weight: 700; color: var(--color-primary); }
+.stat-card .stat-label { font-size: 0.9rem; color: #666; margin-top: 0.5rem; }
+
+/* --- Notificaciones (notifications.php) --- */
+.notification-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.notification-item { display: flex; gap: 1rem; align-items: center; background-color: var(--color-card-bg); padding: 1rem; border-radius: 8px; border-left: 5px solid var(--color-secondary); transition: background-color 0.2s; }
+.notification-item:hover { background-color: #f0f0f0; }
+.notification-item i { font-size: 1.5rem; color: var(--color-secondary); }
+.notification-content p { margin: 0; }
+.notification-content .notification-time { font-size: 0.8rem; color: #888; margin-top: 0.25rem; }
+.notification-item.read { opacity: 0.7; border-left-color: var(--color-border); }
+
+/* --- Sistema de Modales --- */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { background-color: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); width: 90%; max-width: 500px; transform: scale(0.95); transition: transform 0.3s ease; }
+.modal-overlay.active .modal-content { transform: scale(1); }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--color-border); }
+.modal-header h2 { font-size: 1.5rem; }
+.modal-close { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #aaa; }
+.modal-body p { margin-bottom: 1rem; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.5rem; }
+
+/* --- Paneles Flotantes (Notificaciones, Puntos, Menú Más) --- */
+.floating-panel { position: fixed; background-color: var(--color-card-bg); border-radius: 12px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); z-index: 1100; opacity: 0; visibility: hidden; transform: translateY(-10px) scale(0.98); transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease; max-height: 400px; overflow-y: auto; width: 350px; max-width: 90vw; }
+.floating-panel.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+#notifications-panel, #points-history-panel { top: 70px; right: 1rem; }
+.panel-header { padding: 1rem; font-weight: 600; border-bottom: 1px solid var(--color-border); }
+.panel-body { padding: 0.5rem; }
+.panel-item { display: flex; align-items: center; gap: 1rem; padding: 1rem; text-decoration: none; color: var(--color-text); border-radius: 8px; transition: background-color 0.2s; }
+.panel-item:hover { background-color: #f5f5f5; }
+.panel-item.unread { background-color: #e6f7ff; }
+.notification-item-panel .msg { flex-grow: 1; }
+.notification-item-panel .time { font-size: 0.75rem; color: #888; }
+.transaction-item-panel { justify-content: space-between; }
+.transaction-item-panel .desc { font-size: 0.9rem; }
+.transaction-item-panel .amount { font-weight: 600; }
+.transaction-item-panel .amount.income { color: var(--color-success); }
+.transaction-item-panel .amount.expense { color: var(--color-danger); }
+.panel-footer { padding: 0.75rem; text-align: center; border-top: 1px solid var(--color-border); }
+.bottom-panel { bottom: 80px; right: 1rem; width: auto; }
+.bottom-panel .panel-item i { width: 20px; }
+
+/* --- Clases de utilidad --- */
+.user-link { cursor: pointer; font-weight: 600; color: var(--color-secondary); text-decoration: none; }
+.user-link:hover { text-decoration: underline; }
+.message { padding: 1rem; border-radius: 8px; margin-top: 1rem; }
+.message.success { background-color: #d4edda; color: #155724; }
+.message.error { background-color: #f8d7da; color: #721c24; }
+.hidden { display: none; }
+
+/* --- Media Queries para Responsividad --- */
+@media (max-width: 768px) {
+    .top-nav .user-info {
+        gap: 0.75rem; /* Menos espacio en pantallas más pequeñas */
+    }
+
+    .card {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .top-nav .logo { font-size: 1.2rem; }
+    .top-nav .user-info { gap: 0.5rem; }
+    .task-card { flex-wrap: wrap; }
+    .task-card-content { width: calc(100% - 96px); }
+    .task-card-actions { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 1rem; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .modal-content { padding: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+    .top-nav {
+        height: 50px;
+    }
+    .top-nav .logo {
+        font-size: 1.2rem;
+    }
+     .top-nav .user-info {
+        gap: 0.5rem;
+    }
+    .user-avatar-sm {
+        width: 32px;
+        height: 32px;
+    }
+    .notification-bell {
+        font-size: 1.2rem;
+    }
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    .bottom-nav {
+        height: 60px;
+    }
+    .bottom-nav .nav-item i {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Mejoras visuales para el chat --- */
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.2rem;
+    background: #f4f7fa;
+    border-radius: 12px;
+    min-height: 200px;
+}
+.message-bubble {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+    max-width: 85%;
+    margin-bottom: 0.5rem;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-radius: 18px;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    transition: background 0.2s;
+}
+.message-bubble.sent {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+    background: var(--color-primary);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+.message-bubble.received {
+    align-self: flex-start;
+    background: #e2e8f0;
+    color: var(--color-text);
+    border-bottom-left-radius: 4px;
+}
+.message-bubble + .message-bubble {
+    margin-top: 0.5rem;
+}
+.chat-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.message-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
+    word-break: break-word;
+}
+.message-sender-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+    color: #888;
+    text-align: left;
+}
+.message-bubble.sent .message-sender-name {
+    color: #ffe0c2;
+    text-align: right;
+}
+.message-bubble.sent .message-content {
+    color: #fff;
+}
+.message-bubble.received .message-content {
+    color: var(--color-text);
+}
+
+/* --- Mejoras visuales adicionales para el chat --- */
+.message-bubble {
+    border: 1px solid #eaeaea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    position: relative;
+}
+.message-bubble.sent {
+    background: linear-gradient(90deg, var(--color-primary) 90%, #ffb87a 100%);
+    color: #fff;
+    border: 1px solid #ffb87a;
+}
+.message-bubble.received {
+    background: linear-gradient(90deg, #e2e8f0 90%, #cfd8e3 100%);
+    color: var(--color-text);
+    border: 1px solid #cfd8e3;
+}
+.message-content {
+    background: transparent;
+    border-radius: 12px;
+    padding: 0.1rem 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.message-sender-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: #888;
+    letter-spacing: 0.02em;
+}
+.message-bubble.sent .message-sender-name {
+    color: #fff3e0;
+}
+.message-bubble.received .message-sender-name {
+    color: #1E90FF;
+}
+.message-bubble:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: #eaeaea;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    opacity: 0.5;
+}
+.message-bubble:last-child:after {
+    display: none;
+}
+
+/* --- Corrección de scroll y tamaño en el chat --- */
+.chat-messages {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    max-height: 350px;
+    min-height: 120px;
+    padding-bottom: 0.5rem;
+    scroll-behavior: smooth;
+}
+.chat-panel, .chat-modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    max-height: 500px;
+    min-width: 320px;
+    max-width: 95vw;
+    box-sizing: border-box;
+}
+.chat-form {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    z-index: 2;
+    padding: 1rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    gap: 0.5rem;
+}
+.chat-form input {
+    flex: 1 1 auto;
+    border-radius: 20px;
+    min-width: 0;
+}
+.chat-form button {
+    flex-shrink: 0;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+}
+
+
